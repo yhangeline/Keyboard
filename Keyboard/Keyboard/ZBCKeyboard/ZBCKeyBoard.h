@@ -25,6 +25,6 @@ static const NSUInteger ZBCKeyBoardStyleDefault = ZBCKeyBoardStyleFlat;
 
 @property (nonatomic,assign) ZBCKeyBoardStyle style;
 
-@property (nonatomic,strong) UIImage *backgroundImage;//炫彩风格才有效
+@property (nonatomic,strong) UIImage *backgroundImage;//只有当style设置为炫彩风格才有效
 
 @end
