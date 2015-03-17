@@ -2,8 +2,8 @@
 //  AppDelegate.m
 //  Keyboard
 //
-//  Created by zhubch on 15-2-12.
-//  Copyright (c) 2015年 zhubch. All rights reserved.
+//  Created by Zhubch on 15-2-12.
+//  Copyright (c) 2015年 Zhubch. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -16,7 +16,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    // Override  point for customization after application launch.
     return YES;
 }
 

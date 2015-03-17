@@ -2,8 +2,8 @@
 //  ZBCTrackButton.m
 //  test
 //
-//  Created by zhubch on 15-2-11.
-//  Copyright (c) 2015年 zhubch. All rights reserved.
+//  Created by Zhubch on 15-2-11.
+//  Copyright (c) 2015年 Zhubch. All rights reserved.
 //
 
 #import "ZBCTrackButton.h"
@@ -17,7 +17,7 @@
 {
     beginPoint = [touches.anyObject locationInView:self];
     self.backgroundColor = _pressedColor;
-    [self.delegate trackStarted];
+    [self.delegate trackStarted]; 
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event

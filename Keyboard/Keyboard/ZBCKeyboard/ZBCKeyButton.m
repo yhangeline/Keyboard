@@ -2,8 +2,8 @@
 //  ZBCKeyButton.m
 //  test
 //
-//  Created by zhubch on 15-2-10.
-//  Copyright (c) 2015年 zhubch. All rights reserved.
+//  Created by Zhubch on 15-2-10.
+//  Copyright (c) 2015年 Zhubch. All rights reserved.
 //
 
 #import "ZBCKeyButton.h"

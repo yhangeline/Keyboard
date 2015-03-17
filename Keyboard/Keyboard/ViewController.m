@@ -2,8 +2,8 @@
 //  ViewController.m
 //  Keyboard
 //
-//  Created by zhubch on 15-2-12.
-//  Copyright (c) 2015年 zhubch. All rights reserved.
+//  Created by Zhubch on 15-2-12.
+//  Copyright (c) 2015年 Zhubch. All rights reserved.
 //
 
 #import "ViewController.h"
@@ -24,7 +24,7 @@
 //    keyboard.style = ZBCKeyBoardStyleFlat;
 //    keyboard.style = ZBCKeyBoardStyleSimulate;
 
-    keyboard.backgroundImage = [UIImage imageNamed:@"bg"];
+     keyboard.backgroundImage = [UIImage imageNamed:@"bg"];
     
     _textView.inputView = keyboard;
 }

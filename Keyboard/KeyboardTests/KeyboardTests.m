@@ -2,8 +2,8 @@
 //  KeyboardTests.m
 //  KeyboardTests
 //
-//  Created by zhubch on 15-2-12.
-//  Copyright (c) 2015年 zhubch. All rights reserved.
+//  Created by Zhubch on 15-2-12.
+//  Copyright (c) 2015年 Zhubch. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -16,7 +16,7 @@
 @implementation KeyboardTests
 
 - (void)setUp {
-    [super setUp];
+    [super setUp]; 
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 

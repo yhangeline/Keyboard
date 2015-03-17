@@ -2,8 +2,8 @@
 //  ZBCSwipeButton.m
 //  test
 //
-//  Created by zhubch on 15-2-11.
-//  Copyright (c) 2015年 zhubch. All rights reserved.
+//  Created by Zhubch on 15-2-11.
+//  Copyright (c) 2015年 Zhubch. All rights reserved.
 //
 
 #import "ZBCSwipeButton.h"
@@ -31,7 +31,7 @@
         self.backgroundColor = _color;
         self.textColor = _pressedColor;
         self.tintIndex = 5;
-
+ 
         [UIView animateWithDuration:1 animations:^{
             self.tintIndex = 0;
         }];
