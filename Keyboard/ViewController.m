@@ -20,9 +20,9 @@
     [super viewDidLoad];
     ZBCKeyBoard *keyboard = [[ZBCKeyBoard alloc]init];
     keyboard.editView = _textView;
-    keyboard.style = ZBCKeyBoardStyleColorfull;
+//    keyboard.style = ZBCKeyBoardStyleColorfull;
 //    keyboard.style = ZBCKeyBoardStyleFlat;
-//    keyboard.style = ZBCKeyBoardStyleSimulate;
+    keyboard.style = ZBCKeyBoardStyleSimulate;
 
      keyboard.backgroundImage = [UIImage imageNamed:@"bg"];
     
