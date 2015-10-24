@@ -25,6 +25,8 @@
 
 @property (nonatomic,strong) UIColor *textColor;
 
+@property (nonatomic,strong) UIColor *pressedTextColor;
+
 @property (nonatomic,strong) UIColor *tintTextcolor;
 
 @property (nonatomic,strong) UIColor *color;

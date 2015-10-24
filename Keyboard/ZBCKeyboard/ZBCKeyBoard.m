@@ -19,7 +19,9 @@
 #define kTabButtonTag 6
 #define kHideButtonTag 7
 
-#define kGrayColor     [UIColor colorWithWhite:0.75 alpha:1]
+#define kGrayColor     [UIColor colorWithWhite:0.85 alpha:1]
+#define kTitleColor     [UIColor colorWithWhite:0.35 alpha:1]
+#define kBlueColor     [UIColor colorWithRed:38/255.0 green:130/255.0 blue:213/255.0 alpha:1]
 
 @interface ZBCKeyBoard () <ZBCKeyButtonDelegate,ZBCSwipeButtonDelegate,ZBCTrackButton>
 
@@ -47,8 +49,8 @@
             btn.upcase = NO;
             btn.color = [UIColor colorWithWhite:0.98 alpha:1];
             btn.pressedColor = kGrayColor;
-            btn.textColor = [UIColor grayColor];
-            btn.tintTextcolor = [UIColor blueColor];
+            btn.textColor = kTitleColor;
+            btn.tintTextcolor = kBlueColor;
             btn.delegate = self;
             btn.tag = kCharacterButtonTag;
             
@@ -68,12 +70,12 @@
         [self addSubview:delBtn];
         
         ZBCKeyButton *retBtn = [[ZBCKeyButton alloc]init];//27
-        retBtn.key = @"return";
+        retBtn.key = @"Return";
         retBtn.upcase = NO;
         retBtn.color = kGrayColor;
         retBtn.pressedColor = [UIColor whiteColor];
         retBtn.textColor = [UIColor whiteColor];
-        retBtn.tintTextcolor = [UIColor blueColor];
+        retBtn.tintTextcolor = kBlueColor;
         retBtn.delegate = self;
         retBtn.tag = kReturnButtonTag;
         [buttonArray addObject:retBtn];
@@ -92,7 +94,7 @@
         ZBCKeyButton *spaceBtn = [[ZBCKeyButton alloc]init];//29
         spaceBtn.delegate = self;
         spaceBtn.color = [UIColor whiteColor];
-        spaceBtn.pressedColor = [UIColor grayColor];
+        spaceBtn.pressedColor = kGrayColor;
         spaceBtn.tag = kSpaceButtonTag;
         [buttonArray addObject:spaceBtn];
         [self addSubview:spaceBtn];
@@ -104,7 +106,7 @@
         tabBtn.color = kGrayColor;
         tabBtn.pressedColor = [UIColor whiteColor];
         tabBtn.textColor = [UIColor whiteColor];
-        tabBtn.tintTextcolor = [UIColor blueColor];
+        tabBtn.tintTextcolor = kBlueColor;
         tabBtn.tag = kTabButtonTag;
         [buttonArray addObject:tabBtn];
         [self addSubview:tabBtn];
@@ -124,16 +126,17 @@
             ZBCSwipeButton *btn = [[ZBCSwipeButton alloc]initWithFrame:CGRectZero];
             btn.keys = [keys substringWithRange:NSMakeRange(i*5, 5)];
             btn.color = [UIColor colorWithWhite:0.98 alpha:1];
-            btn.pressedColor = [UIColor grayColor];
-            btn.textColor = [UIColor grayColor];
-            btn.tintTextcolor = [UIColor blueColor];
+            btn.pressedColor = kGrayColor;
+            btn.textColor = kTitleColor;
+            btn.pressedTextColor = kBlueColor;
+            btn.tintTextcolor = [UIColor redColor];
             btn.delegate = self;
             [self addSubview:btn];
             [buttonArray addObject:btn];
         }
         
         ZBCTrackButton *trackBtn = [[ZBCTrackButton alloc]init];
-        trackBtn.color = [UIColor blueColor];
+        trackBtn.color = kBlueColor;
         trackBtn.pressedColor = [UIColor redColor];
         trackBtn.delegate = self;
         [self addSubview:trackBtn];
@@ -176,9 +179,6 @@
             [buttonArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 UIView *btn = obj;
                 btn.alpha = 0.4;
-                btn.layer.shadowColor = [UIColor blackColor].CGColor;
-                btn.layer.shadowOffset = CGSizeMake(-1, 1);
-                btn.layer.shadowOpacity = 1;
                 
                 if (![obj isKindOfClass:[ZBCTrackButton class]]) {
                     btn.layer.cornerRadius = 5;
@@ -191,8 +191,8 @@
             [buttonArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 UIView *btn = obj;
                 btn.alpha = 1;
-                btn.layer.shadowColor = [UIColor blackColor].CGColor;
-                btn.layer.shadowOffset = CGSizeMake(-1, 1);
+                btn.layer.shadowColor = [UIColor grayColor].CGColor;
+                btn.layer.shadowOffset = CGSizeMake(0.2, 0.2);
                 btn.layer.shadowOpacity = 1;
 
                 if (![obj isKindOfClass:[ZBCTrackButton class]]) {
@@ -313,7 +313,7 @@
         } else if (idx < 41){
             frame = CGRectMake((idx-31)*w+w*0.05, w*2+w*0.05, 0.9*w, 0.9*w);
         } else {
-            frame = CGRectMake(4.5*w+w*0.3, w*1.5+w*0.3, 0.4*w, 0.4*w);
+            frame = CGRectMake(5.0*w+w*0.3, w*1.5+w*0.3, 0.4*w, 0.4*w);
             v.layer.masksToBounds = YES;
             v.layer.cornerRadius = 0.2*w;
         }

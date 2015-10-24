@@ -11,65 +11,64 @@
 @implementation ZBCSwipeButton
 {
     NSMutableArray *labels;
+    CGPoint beginPoint;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(move:)];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
-        [self addGestureRecognizer:pan];
-        [self addGestureRecognizer:tap];
+
         [self createLabel];
     }
     return self;
 }
 
-- (void)tap:(UITapGestureRecognizer*)gesture
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled) {
-        self.backgroundColor = _color;
-        self.textColor = _pressedColor;
-        self.tintIndex = 5;
- 
-        [UIView animateWithDuration:1 animations:^{
-            self.tintIndex = 0;
-        }];
-    } else {
-        self.backgroundColor = _pressedColor;
-        self.textColor = _color;
+    self.backgroundColor = _pressedColor;
+    for (int i = 0; i < 5; i++) {
+        UILabel *label = (UILabel*)[self viewWithTag:i+1];
+        label.textColor = _pressedTextColor;
+    }
+    UITouch *touch = touches.anyObject;
+    beginPoint = [touch locationInView:self];
+    self.tintIndex = 5;
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    self.backgroundColor = _color;
+    for (UILabel *l in self.subviews) {
+        l.textColor = _textColor;
+    }
+    [self.delegate choosedKey:[_keys substringWithRange:NSMakeRange(_tintIndex - 1, 1)]];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    self.backgroundColor = _color;
+    for (UILabel *l in self.subviews) {
+        l.textColor = _textColor;
     }
 }
 
-- (void)move:(UIPanGestureRecognizer*)gesture
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (gesture.state == UIGestureRecognizerStateBegan) {
-        self.backgroundColor = _pressedColor;
-        self.textColor = _color;
+    UITouch *touch = touches.anyObject;
+    CGPoint p = [touch locationInView:self];
+    CGPoint offset = CGPointMake(p.x - beginPoint.x, p.y - beginPoint.y);
+    
+    if (offset.x < 0 && offset.y<0) {
+        self.tintIndex = 1;
     }
-    if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled) {
-        
-        CGPoint v = [gesture velocityInView:self];
-        
-        if (v.x < 0 && v.y<0) {
-            self.tintIndex = 1;
-        }
-        else if(v.x > 0 && v.y<0){
-            self.tintIndex = 2;
-        }
-        else if(v.x < 0 && v.y>0){
-            self.tintIndex = 3;
-        }
-        else if(v.x > 0 && v.y>0){
-            self.tintIndex = 4;
-        }
-        
-        self.backgroundColor = _color;
-        self.textColor = _pressedColor;
-
-        [UIView animateWithDuration:1 animations:^{
-            self.tintIndex = 0;
-        }];
+    else if(offset.x > 0 && offset.y<0){
+        self.tintIndex = 2;
+    }
+    else if(offset.x < 0 && offset.y>0){
+        self.tintIndex = 3;
+    }
+    else if(offset.x > 0 && offset.y>0){
+        self.tintIndex = 4;
     }
 }
 
@@ -102,15 +101,11 @@
 {
     _tintIndex = tintIndex;
     
-    if (tintIndex > 0) {
-        [self.delegate choosedKey:[_keys substringWithRange:NSMakeRange(tintIndex - 1, 1)]];
-    }
-    
     for (UILabel *l in self.subviews) {
         if (l.tag == tintIndex) {
             l.textColor = _tintTextcolor;
         }else {
-            l.textColor = _textColor;
+            l.textColor = _pressedTextColor;
         }
     }
 }
